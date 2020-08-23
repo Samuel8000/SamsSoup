@@ -1,0 +1,12 @@
+﻿@model SoupsListViewModel
+
+    <h1>@Model.CurrentCategory</h1>
+    @foreach(var soup in Model.Soups)
+    {
+        <div>
+            <h2>@soup.SoupName</h2>
+            <h3>@soup.ShortDescription</h3>
+            <h4>@soup.Category.CategoryName</h4>
+        </div>
+    }
+
