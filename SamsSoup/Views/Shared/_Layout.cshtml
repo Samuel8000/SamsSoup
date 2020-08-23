@@ -5,11 +5,22 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="~/dist/main.css" rel="stylesheet" type="text/css"/>
     <title>@ViewBag.Title</title>
 </head>
 <body>
-    <div>
-        @RenderBody()
+    <div class="container bg-light vh-100">
+        <div class="row">
+            <div class="col-12 d-flex justify-content-center">
+                <img class="img-fluid" src="~/images/logo1.png" alt="Sam's Soup Shop Logo" />
+            </div>
+            <div class="col-12">
+                @RenderBody()
+            </div>
+        </div>
     </div>
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js" ></script>
 </body>
 </html>
