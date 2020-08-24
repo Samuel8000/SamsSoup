@@ -12,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using SamsSoup.Data;
 using SamsSoup.Data.Interfaces;
 using SamsSoup.Data.Repositories;
+using SamsSoup.Models;
 
 namespace SamsSoup
 {
@@ -32,6 +33,10 @@ namespace SamsSoup
 
             services.AddScoped<ISoupRepository, SoupRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<ShoppingCart>(sp => ShoppingCart.GetCart(sp));
+
+            services.AddHttpContextAccessor();
+            services.AddSession();
 
             services.AddControllersWithViews();
         }
@@ -46,6 +51,8 @@ namespace SamsSoup
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseSession();
+
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>

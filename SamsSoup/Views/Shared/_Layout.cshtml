@@ -6,13 +6,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="~/lib/font-awesome/css/all.min.css" rel="stylesheet" />
     <link href="~/dist/main.css" rel="stylesheet" type="text/css"/>
     <title>@ViewBag.Title</title>
 </head>
 <body>
+    <nav class="navbar navbar-ligt bg-light navbar-expand-sm border-bottom border-dark" role="navigation">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle Navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse mr-auto">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
+                </li>
+
+                @await Component.InvokeAsync("CategoryMenu")
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Contact" asp-action="Index">Contact</a>
+                </li>
+                @await Component.InvokeAsync("ShoppingCartSummary")
+            </ul>
+
+        </div>
+    </nav>
     <div class="container bg-light vh-100">
         <div class="row">
-            <div class="col-12 d-flex justify-content-center">
+            <div class="col-12 d-flex justify-content-center mt-3 mb-3">
                 <img class="img-fluid" src="~/images/logo1.png" alt="Sam's Soup Shop Logo" />
             </div>
             <div class="col-12">

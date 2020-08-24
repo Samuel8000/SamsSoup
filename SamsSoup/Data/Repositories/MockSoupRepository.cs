@@ -14,7 +14,8 @@ namespace SamsSoup.Data.Repositories
             new List<Soup>
             {
                 new Soup{Id=1, SoupName= "Vegetable Clear Soup", ShortDescription="Lorem Ipsum",
-                    LongDescription="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.", Category = _categoryRepository.AllCategories.ToList()[0], IsSoupOfTheWeek= false},
+                    LongDescription="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.", 
+                    Category = _categoryRepository.AllCategories.ToList()[0], IsSoupOfTheWeek= false},
                 new Soup{Id=2, SoupName= "Mushroom Soup", ShortDescription="Lorem Ipsum",
                     LongDescription="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.", Category = _categoryRepository.AllCategories.ToList()[1], IsSoupOfTheWeek= false},
                 new Soup{Id=3, SoupName= "Chicken and Chard Pasta Fagioli", ShortDescription="Lorem Ipsum",

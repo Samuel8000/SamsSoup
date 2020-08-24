@@ -13,6 +13,7 @@ namespace SamsSoup.Models
         public string LongDescription { get; set; }
         //public string ImageFilePath { get; set; }
         public bool IsSoupOfTheWeek { get; set; }
+        public decimal Price { get; set; }
         public int CategoryId { get; set; }
         public Category Category { get; set; }
     }
