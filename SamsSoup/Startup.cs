@@ -30,8 +30,8 @@ namespace SamsSoup
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddScoped<ISoupRepository, MockSoupRepository>();
-            services.AddScoped<ICategoryRepository, MockCategoryRepository>();
+            services.AddScoped<ISoupRepository, SoupRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
 
             services.AddControllersWithViews();
         }
