@@ -28,11 +28,12 @@
                     <a class="nav-link" asp-controller="Contact" asp-action="Index">Contact</a>
                 </li>
                 @await Component.InvokeAsync("ShoppingCartSummary")
+                <partial name="_LoginPartial"/>
             </ul>
 
         </div>
     </nav>
-    <div class="container bg-light vh-100">
+    <div class="container bg-light">
         <div class="row">
             <div class="col-12 d-flex justify-content-center mt-3 mb-3">
                 <img class="img-fluid" src="~/images/logo1.png" alt="Sam's Soup Shop Logo" />
@@ -42,7 +43,10 @@
             </div>
         </div>
     </div>
+
     <script src="~/lib/jquery/jquery.min.js"></script>
     <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js" ></script>
+
+    @RenderSection("Scripts", required:false)
 </body>
 </html>
