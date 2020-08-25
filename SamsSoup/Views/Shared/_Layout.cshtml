@@ -7,9 +7,9 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="~/lib/font-awesome/css/all.min.css" rel="stylesheet" />
-    <link href="~/dist/main.css" rel="stylesheet" type="text/css"/>
+    <link href="~/dist/main.css" rel="stylesheet" type="text/css" />
     <title>@ViewBag.Title</title>
 </head>
 <body>
@@ -33,7 +33,7 @@
 
                 @if (User.Identity.IsAuthenticated)
                 {
-                    @await Component.InvokeAsync("AdminMenu") 
+                    @await Component.InvokeAsync("AdminMenu")
                 }
             </ul>
             <partial name="_LoginPartial" />
@@ -51,8 +51,8 @@
     </div>
 
     <script src="~/lib/jquery/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js" ></script>
+    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    @RenderSection("Scripts", required:false)
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

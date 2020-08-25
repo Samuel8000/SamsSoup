@@ -5,15 +5,16 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using SamsSoup.Auth;
 using SamsSoup.ViewModels;
 
 namespace SamsSoup.Controllers
 {
     public class AdminController : Controller
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public AdminController(UserManager<IdentityUser> userManager)
+        public AdminController(UserManager<ApplicationUser> userManager)
         {
             _userManager = userManager;
         }
@@ -33,10 +34,13 @@ namespace SamsSoup.Controllers
         {
             if (!ModelState.IsValid) return View(addUserViewModel);
 
-            var user = new IdentityUser()
+            var user = new ApplicationUser()
             {
                 UserName = addUserViewModel.UserName,
-                Email = addUserViewModel.Email
+                Email = addUserViewModel.Email,
+                BirthDate = addUserViewModel.Birthdate,
+                City = addUserViewModel.City,
+                Country = addUserViewModel.Country
             };
 
             IdentityResult result = await _userManager.CreateAsync(user, addUserViewModel.Password);
@@ -84,7 +88,7 @@ namespace SamsSoup.Controllers
         [HttpPost]
         public async Task<IActionResult> DeleteUser(string userId)
         {
-            IdentityUser user = await _userManager.FindByIdAsync(userId);
+            ApplicationUser user = await _userManager.FindByIdAsync(userId);
 
             if(user != null)
             {
