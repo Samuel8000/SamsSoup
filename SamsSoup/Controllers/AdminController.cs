@@ -60,6 +60,7 @@ namespace SamsSoup.Controllers
             return View(user);
         }
 
+        [HttpPost]
         public async Task<IActionResult> EditUser(string id, string UserName, string Email)
         {
             var user = await _userManager.FindByIdAsync(id);
