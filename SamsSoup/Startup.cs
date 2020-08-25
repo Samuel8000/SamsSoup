@@ -32,7 +32,16 @@ namespace SamsSoup
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<AppDbContext>();
+            services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            {
+                options.Password.RequiredLength = 8;
+                options.Password.RequireNonAlphanumeric = true;
+                options.Password.RequireUppercase = true;
+                options.User.RequireUniqueEmail = true;
+            })
+                .AddDefaultTokenProviders()
+                .AddDefaultUI()
+                .AddEntityFrameworkStores<AppDbContext>();
 
             services.AddScoped<ISoupRepository, SoupRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();

@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿
+
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -28,9 +30,13 @@
                     <a class="nav-link" asp-controller="Contact" asp-action="Index">Contact</a>
                 </li>
                 @await Component.InvokeAsync("ShoppingCartSummary")
-                <partial name="_LoginPartial"/>
-            </ul>
 
+                @if (User.Identity.IsAuthenticated)
+                {
+                    @await Component.InvokeAsync("AdminMenu") 
+                }
+            </ul>
+            <partial name="_LoginPartial" />
         </div>
     </nav>
     <div class="container bg-light">

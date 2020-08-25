@@ -1,0 +1,13 @@
+﻿@model IEnumerable<SamsSoup.Components.AdminMenuItem>
+
+<li class="dropdown nav-item">
+    <a asp-controller="Admin" asp-action="Index" class="dropdown-toggle nav-link mr-5" data-toggle="dropdown">Admin</a>
+    <ul class="dropdown-menu">
+        @foreach (var menuItem in Model)
+        {
+            <li>
+                <a asp-controller="Admin" asp-action="@menuItem.ActionValue">@menuItem.DisplayValue</a>
+            </li>
+        }
+    </ul>
+</li>
