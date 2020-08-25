@@ -31,7 +31,7 @@
                 </li>
                 @await Component.InvokeAsync("ShoppingCartSummary")
 
-                @if (User.Identity.IsAuthenticated)
+                @if ((User.Identity.IsAuthenticated) && User.IsInRole("Administrators"))
                 {
                     @await Component.InvokeAsync("AdminMenu")
                 }
