@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using SamsSoup.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,31 +9,35 @@ using System.Threading.Tasks;
 
 namespace SamsSoup.Auth
 {
-    public class MinimumOrderAgeRequirement : AuthorizationHandler<MinimumOrderAgeRequirement>, IAuthorizationRequirement
+    public class MinimumOrderAgeRequirementHandler : AuthorizationHandler<MinimumOrderAgeRequirement>
     {
-        private readonly int _minimumOrderAge;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public MinimumOrderAgeRequirement(int minimumOrderAge)
+        public MinimumOrderAgeRequirementHandler(UserManager<ApplicationUser> userManager)
         {
-            _minimumOrderAge = minimumOrderAge;
+            _userManager = userManager;
         }
-        protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, MinimumOrderAgeRequirement requirement)
+        protected override async Task HandleRequirementAsync(AuthorizationHandlerContext context, MinimumOrderAgeRequirement requirement)
         {
-            if(!context.User.HasClaim(c => c.Type == ClaimTypes.DateOfBirth))
-            {
-                return Task.CompletedTask;
-            }
-
-            var birthDate = Convert.ToDateTime(context.User.FindFirst(c => c.Type == ClaimTypes.DateOfBirth).Value);
+            var user = await _userManager.GetUserAsync(context.User);
+            var birthDate = user.BirthDate;
 
             var ageInYears = DateTime.Today.Year - birthDate.Year;
 
-            if(ageInYears >= _minimumOrderAge)
+            if(ageInYears >= requirement.MinimumOrderAge)
             {
                 context.Succeed(requirement);
             }
+        }
+    }
 
-            return Task.CompletedTask;
+    public class MinimumOrderAgeRequirement : IAuthorizationRequirement
+    {
+        public int MinimumOrderAge { get; }
+
+        public MinimumOrderAgeRequirement(int minimumOrderAge)
+        {
+            MinimumOrderAge = minimumOrderAge;
         }
     }
 }

@@ -21,13 +21,14 @@ namespace SamsSoup.Data.Repositories
         {
             order.OrderPlaced = DateTime.Now;
             _appDbContext.Orders.Add(order);
-
+            _appDbContext.SaveChanges();
             var shoppingCartItems = _shoppingCart.ShoppingCartItems;
 
             foreach (var shoppingCartItem in shoppingCartItems)
             {
                 var orderDetail = new OrderDetail()
                 {
+
                     Amount = shoppingCartItem.Amount,
                     SoupId = shoppingCartItem.Soup.Id,
                     OrderId = order.Id,

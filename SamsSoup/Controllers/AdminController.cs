@@ -67,7 +67,7 @@ namespace SamsSoup.Controllers
             if (user == null) RedirectToAction("UserManagement", _userManager.Users);
 
             var claims = await _userManager.GetClaimsAsync(user);
-            var editUserViewModel = new EditUserViewModel { Id = user.Id, Email = user.Email, UserName = user.UserName, UserClaims = claims.Select(c => c.Value).ToList() };
+            var editUserViewModel = new EditUserViewModel { Id = user.Id, Email = user.Email, UserName = user.UserName, Birthdate = user.BirthDate, City = user.City, Country = user.Country, UserClaims = claims.Select(c => c.Value).ToList() };
             return View(editUserViewModel);
         }
 
@@ -308,7 +308,7 @@ namespace SamsSoup.Controllers
                 return RedirectToAction("UserManagement", _userManager.Users);
 
             IdentityUserClaim<string> claim =
-                new IdentityUserClaim<string> { ClaimType = claimsManagementViewModel.ClaimId, ClaimValue = claimsManagementViewModel.ClaimId };
+                new IdentityUserClaim<string> { ClaimType = claimsManagementViewModel.ClaimId, ClaimValue = claimsManagementViewModel.ClaimId, UserId = claimsManagementViewModel.UserId };
 
             user.Claims.Add(claim);
             var result = await _userManager.UpdateAsync(user);

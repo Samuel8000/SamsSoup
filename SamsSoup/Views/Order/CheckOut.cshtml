@@ -2,6 +2,7 @@
 
 <form action="CheckOut" method="post" class="form" role="form">
     <div asp-validation-summary="All" class="text-danger"></div>
+    <input type="hidden" asp-for="Id"/>
 
     <div class="form-group">
         <label asp-for="LastName" class="col-form-label"></label>
