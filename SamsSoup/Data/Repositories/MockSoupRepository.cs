@@ -27,9 +27,19 @@ namespace SamsSoup.Data.Repositories
 
         public IEnumerable<Soup> SoupsOfTheWeek { get; }
 
+        public void CreateSoup(Soup soup)
+        {
+            throw new NotImplementedException();
+        }
+
         public Soup GetSoupById(int soupId)
         {
             return AllSoups.FirstOrDefault(s => s.Id == soupId);
+        }
+
+        public void UpdateSoup(Soup soup)
+        {
+            throw new NotImplementedException();
         }
     }
 }

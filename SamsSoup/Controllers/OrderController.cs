@@ -26,6 +26,8 @@ namespace SamsSoup.Controllers
         }
 
         [HttpPost]
+        [Authorize]
+        [Authorize(Policy ="MinimumOrderAge")]
         public IActionResult CheckOut(Order order)
         {
             var items = _shoppingCart.GetShoppingCartItems();

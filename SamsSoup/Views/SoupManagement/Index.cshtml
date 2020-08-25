@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Soup>
+
+<h2>Soup Management</h2>
+
+@if (!Model.Any())
+{
+    <tr><td colspan="3" class="text-center">No Soups at this point :()</td></tr>
+}
+else
+{
+    <table class="table">
+        <tr>
+            <th>Soup ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Actions</th>
+        </tr>
+        @foreach (var Soup in Model)
+        {
+            <tr>
+                <td>@Soup.Id</td>
+                <td>@Soup.SoupName</td>
+                <td>@Soup.Price</td>
+                <td>
+                    <form asp-action="DeleteSoup" asp-route-soupId="@Soup.Id" method="post">
+                        <a class="btn btn-sm btn-primary" asp-action="EditSoup" asp-route-soupId="@Soup.Id">Edit</a>
+                        <button type="submit" onclick="return confirm('Do you really want to delete this Soup?');" class="btn btn-sm btn-danger">
+                            Delete
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </table>
+}
+<p>
+    <a class="btn btn-primary" asp-action="AddSoup">Add new Soup</a>
+</p>

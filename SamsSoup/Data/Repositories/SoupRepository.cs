@@ -36,9 +36,21 @@ namespace SamsSoup.Data.Repositories
             }
         }
 
+        public void CreateSoup(Soup soup)
+        {
+            _appDbContext.Soups.Add(soup);
+            _appDbContext.SaveChanges();
+        }
+
         public Soup GetSoupById(int soupId)
         {
             return _appDbContext.Soups.FirstOrDefault(s => s.Id == soupId);
+        }
+
+        public void UpdateSoup(Soup soup)
+        {
+            _appDbContext.Soups.Update(soup);
+            _appDbContext.SaveChanges();
         }
     }
 }

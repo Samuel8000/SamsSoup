@@ -11,5 +11,8 @@ namespace SamsSoup.Data.Interfaces
         IEnumerable<Soup> AllSoups { get; }
         IEnumerable<Soup> SoupsOfTheWeek { get; }
         Soup GetSoupById(int soupId);
+        void UpdateSoup(Soup soup);
+        void CreateSoup(Soup soup);
+
     }
 }

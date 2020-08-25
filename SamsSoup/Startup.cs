@@ -44,6 +44,14 @@ namespace SamsSoup
                 .AddDefaultUI()
                 .AddEntityFrameworkStores<AppDbContext>();
 
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("AdministratorOnly", policy => policy.RequireRole("Administrator"));
+                options.AddPolicy("DeleteSoup", policy => policy.RequireClaim("Delete Soup", "Delete soup"));
+                options.AddPolicy("AddSoup", policy => policy.RequireClaim("Add Soup", "Add Soup"));
+                options.AddPolicy("MinimumOrderAge", policy => policy.Requirements.Add(new MinimumOrderAgeRequirement(18)));
+            });
+
             services.AddScoped<ISoupRepository, SoupRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();
@@ -66,7 +74,6 @@ namespace SamsSoup
             }
             else
             {
-                //app.UseExceptionHandler();
                 app.UseHsts();
             }
 
