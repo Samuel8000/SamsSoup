@@ -57,6 +57,7 @@ namespace SamsSoup
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<ShoppingCart>(sp => ShoppingCart.GetCart(sp));
+            services.AddScoped<ISoupReviewRepository, SoupReviewRepository>();
             services.AddTransient<IAuthorizationHandler, MinimumOrderAgeRequirementHandler>();
 
             services.AddHttpContextAccessor();

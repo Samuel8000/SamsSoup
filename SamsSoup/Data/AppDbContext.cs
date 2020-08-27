@@ -21,6 +21,7 @@ namespace SamsSoup.Data
         public DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
+        public DbSet<SoupReview> SoupReviews { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

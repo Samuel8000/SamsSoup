@@ -3,18 +3,43 @@
 *@
 @{
 }
-@model Soup
+@model SoupDetailViewModel
 
-<h2>@Model.SoupName</h2>
+<h2>@Model.Soup.SoupName</h2>
 <div>
-    <h3>@Model.ShortDescription</h3>
-    <p>@Model.LongDescription</p>
+    <h3>@Model.Soup.ShortDescription</h3>
+    <p>@Model.Soup.LongDescription</p>
     <div class="p2">
         <p class="btn">
             <a class="btn btn-success"
                asp-controller="ShoppingCart"
                asp-action="AddToShoppingCart"
-               asp-route-soupId="@Model.Id">Add To Cart</a>
+               asp-route-soupId="@Model.Soup.Id">Add To Cart</a>
         </p>
     </div>
 </div>
+
+<h3>Reviews for this soup</h3>
+
+@foreach(var review in Model.Soup.SoupReviews)
+{
+    @*@Html.Raw(review.Review)*@
+    <div>@System.Net.WebUtility.HtmlDecode(review.Review)</div>
+}
+
+<form asp-action="Details" asp-controller="Soup" role="form" method="post">
+    <h4>Write a review</h4>
+    <hr />
+    <input type="hidden" asp-for="@Model.Soup.Id"/>
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="Review"></label>
+        <input asp-for="Review" class="form-control"/>
+        <span asp-validation-for="Review" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" class="btn btn-success" value="Post Review"/>
+    </div>
+</form>
