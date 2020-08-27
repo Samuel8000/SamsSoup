@@ -1,0 +1,25 @@
+﻿@model SoupGiftOrder
+
+<h2>Give a soup</h2>
+
+<form asp-action="Index" asp-controller="SoupGift" method="post">
+    <h4>Enter the details</h4>
+    <hr />
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Address"></label>
+        <input asp-for="Address" class="form-control" />
+        <span asp-validation-for="Address" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary" value="Send Soup"/>
+    </div>
+</form>

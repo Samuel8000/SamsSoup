@@ -1,4 +1,5 @@
-﻿
+﻿@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 
 <!DOCTYPE html>
 
@@ -13,32 +14,39 @@
     <title>@ViewBag.Title</title>
 </head>
 <body>
-    <nav class="navbar navbar-ligt bg-light navbar-expand-sm border-bottom border-dark" role="navigation">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle Navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        </div>
-        <div class="navbar-collapse collapse mr-auto">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
-                </li>
+    <div class="container-fluid p-0">
+        <nav class="navbar navbar-ligt bg-light navbar-expand-sm" role="navigation">
 
-                @await Component.InvokeAsync("CategoryMenu")
-                <li class="nav-item">
-                    <a class="nav-link" asp-controller="Contact" asp-action="Index">Contact</a>
-                </li>
-                @await Component.InvokeAsync("ShoppingCartSummary")
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle Navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            <div class="navbar-collapse collapse">
+                <ul class="navbar-nav mr-auto d-flex">
+                    <li class="nav-item ">
+                        <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
 
-                @if (User.Identity.IsAuthenticated) 
-                {
-                    @await Component.InvokeAsync("AdminMenu")
-                }
-            </ul>
-            <partial name="_LoginPartial" />
-        </div>
-    </nav>
+                    @await Component.InvokeAsync("CategoryMenu")
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Contact" asp-action="Index">Contact</a>
+                    </li>
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link " asp-controller="SoupGift" asp-action="Index">Send a Soup</a>
+                        </li>
+                    }
+                    @await Component.InvokeAsync("ShoppingCartSummary")
+
+                    @if (SignInManager.IsSignedIn(User) && User.IsInRole("Administrators"))
+                    {
+                        @await Component.InvokeAsync("AdminMenu")
+                    }
+                </ul>
+                <partial name="_LoginPartial" />
+            </div>
+        </nav>
+    </div>
     <div class="container bg-light">
         <div class="row">
             <div class="col-12 d-flex justify-content-center mt-3 mb-3">

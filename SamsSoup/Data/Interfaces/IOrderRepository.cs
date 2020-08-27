@@ -9,5 +9,6 @@ namespace SamsSoup.Data.Interfaces
     public interface IOrderRepository
     {
         void CreateOrder(Order order);
+        void CreateSoupGiftOrder(SoupGiftOrder soupGiftOrder);
     }
 }

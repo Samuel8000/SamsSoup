@@ -39,5 +39,11 @@ namespace SamsSoup.Data.Repositories
             _appDbContext.SaveChanges();
 
         }
+
+        public void CreateSoupGiftOrder(SoupGiftOrder soupGiftOrder)
+        {
+            _appDbContext.SoupGiftOrders.Add(soupGiftOrder);
+            _appDbContext.SaveChanges();
+        }
     }
 }
