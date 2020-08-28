@@ -27,6 +27,11 @@ namespace SamsSoup.Data.Repositories
 
         public IEnumerable<Soup> SoupsOfTheWeek { get; }
 
+        public int Commit()
+        {
+            throw new NotImplementedException();
+        }
+
         public void CreateSoup(Soup soup)
         {
             throw new NotImplementedException();
@@ -38,6 +43,11 @@ namespace SamsSoup.Data.Repositories
         }
 
         public void UpdateSoup(Soup soup)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateSoupNames(List<string> soups)
         {
             throw new NotImplementedException();
         }

@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AspNetCore;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using SamsSoup.Data.Interfaces;
+using SamsSoup.Models;
 using SamsSoup.ViewModels;
 
 namespace SamsSoup.Controllers
 {
-    [Authorize(Roles ="Administrators")]
-    [Authorize(Policy ="DeleteSoup")]
+
     public class SoupManagementController : Controller
     {
         private readonly ISoupRepository _soupRepository;
@@ -88,5 +89,38 @@ namespace SamsSoup.Controllers
         {
             return View();
         }
+
+        public IActionResult QuickEdit()
+        {
+            var soupNames = _soupRepository.AllSoups.Select(s => s.SoupName).ToList();
+            return View(soupNames);
+        }
+
+        [HttpPost]
+        public IActionResult QuickEdit(List<string> soups)
+        {
+            var soupNames = _soupRepository.AllSoups.Select(s => s.SoupName).ToList();
+
+            for (var i = 0; i < soupNames.Count; i++)
+            {
+                soupNames[i] = soups[i];
+            }
+
+            _soupRepository.UpdateSoupNames(soups);
+            return View(soups);
+        }
+
+        //[HttpPost]
+        //public IActionResult QuickEdit(List<string> soups)
+        //{
+        //    var soupNames = _soupRepository.AllSoups.Select(s => s.SoupName).ToList();
+
+
+        //    for (var i = 0; i < soupNames.Count; i++)
+        //    {
+        //        soupNames[i].Add
+        //    }
+        //    return View(soups);
+        //}
     }
 }

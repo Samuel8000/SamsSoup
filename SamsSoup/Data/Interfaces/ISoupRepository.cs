@@ -14,5 +14,7 @@ namespace SamsSoup.Data.Interfaces
         void UpdateSoup(Soup soup);
         void CreateSoup(Soup soup);
 
+        void UpdateSoupNames(List<string> soups);
+
     }
 }

@@ -35,13 +35,22 @@
                         <li class="nav-item">
                             <a class="nav-link " asp-controller="SoupGift" asp-action="Index">Send a Soup</a>
                         </li>
+
                     }
                     @await Component.InvokeAsync("ShoppingCartSummary")
 
                     @if (SignInManager.IsSignedIn(User) && User.IsInRole("Administrators"))
                     {
                         @await Component.InvokeAsync("AdminMenu")
+
+
                     }
+
+
+                    <li class="dropdown nav-item">
+                        <a class="nav-link" asp-controller="SoupManagement"
+                           asp-action="Index">Soup Management</a>
+                    </li>
                 </ul>
                 <partial name="_LoginPartial" />
             </div>

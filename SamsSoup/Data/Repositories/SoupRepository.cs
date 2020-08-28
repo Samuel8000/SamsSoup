@@ -52,5 +52,11 @@ namespace SamsSoup.Data.Repositories
             _appDbContext.Soups.Update(soup);
             _appDbContext.SaveChanges();
         }
+
+        public void UpdateSoupNames(List<string> soups)
+        {
+         
+        }
+
     }
 }
