@@ -60,7 +60,7 @@ namespace SamsSoup.Data.Repositories
             _appDbContext.SaveChanges();
         }
 
-        public void UpdateSoups(List<Soup> models)
+        public void UpdateMultipleSoups(List<Soup> models)
         {
             _appDbContext.Soups.UpdateRange(models);
             _appDbContext.SaveChanges();

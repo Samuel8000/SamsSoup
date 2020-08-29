@@ -107,7 +107,7 @@ namespace SamsSoup.Controllers
                 models[i].SoupName = soups[i];
             }
 
-            _soupRepository.UpdateSoups(models);
+            _soupRepository.UpdateMultipleSoups(models);
             return View(soups);
         }
         public IActionResult BulkEditSoups()
@@ -126,7 +126,7 @@ namespace SamsSoup.Controllers
                 models[i].Price = soups[i].Price;
                 models[i].ShortDescription = soups[i].ShortDescription;
             }
-            _soupRepository.UpdateSoups(models);
+            _soupRepository.UpdateMultipleSoups(models);
             return View(models);
         }
 

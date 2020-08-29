@@ -14,7 +14,7 @@ namespace SamsSoup.Data.Interfaces
         void UpdateSoup(Soup soup);
         void DeleteSoup(Soup soup);
         void CreateSoup(Soup soup);
-        void UpdateSoups(List<Soup> soups);
+        void UpdateMultipleSoups(List<Soup> soups);
 
 
     }
