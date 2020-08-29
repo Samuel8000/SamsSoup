@@ -10,5 +10,7 @@ namespace SamsSoup.ViewModels
     {
         public Soup Soup { get; set; }
         public string Review { get; set; }
+
+        public IEnumerable<SoupReview> Reviews { get; set; }
     }
 }

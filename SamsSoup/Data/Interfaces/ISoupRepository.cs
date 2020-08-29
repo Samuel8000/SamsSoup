@@ -13,8 +13,7 @@ namespace SamsSoup.Data.Interfaces
         Soup GetSoupById(int soupId);
         void UpdateSoup(Soup soup);
         void CreateSoup(Soup soup);
-
-        void UpdateSoupNames(List<string> soups);
+        void UpdateSoupNames(List<Soup> soups);
 
     }
 }

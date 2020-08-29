@@ -26,15 +26,6 @@ namespace SamsSoup.Controllers
             _htmlEncoder = htmlEncoder;
         }
 
-        //public ViewResult List()
-        //{
-        //    SoupsListViewModel soupsListViewModel = new SoupsListViewModel();
-        //    soupsListViewModel.Soups = _soupRepository.AllSoups;
-        //    soupsListViewModel.CurrentCategory = "Clear Soups";
-
-        //    return View(soupsListViewModel);
-        //}
-
         public ViewResult List(string category)
         {
             IEnumerable<Soup> soups;
@@ -59,24 +50,26 @@ namespace SamsSoup.Controllers
 
         }
 
-        [Route("{controller}/Details/{id}")]
+
         public IActionResult Details(int id)
         {
             var soup = _soupRepository.GetSoupById(id);
             if (soup == null) return NotFound();
-            return View(soup);
+            var reviews = _soupReviewRepository.GetSoupReviewsForPie(id);
+            return View(new SoupDetailViewModel() { Soup = soup, Reviews = reviews });
         }
-        [Route("{controller}/Details/{id}")]
+
         [HttpPost]
-        public IActionResult Details (int id, string review)
+        public IActionResult Details(int id, string review)
         {
             var soup = _soupRepository.GetSoupById(id);
             if (soup == null) return NotFound();
+            var reviews = _soupReviewRepository.GetSoupReviewsForPie(id);
 
             string encodedReview = _htmlEncoder.Encode(review);
             _soupReviewRepository.AddSoupReview(new SoupReview() { Soup = soup, Review = encodedReview });
 
-            return View(new SoupDetailViewModel() { Soup = soup });
+            return View(new SoupDetailViewModel() { Soup = soup, Reviews = reviews });
         }
     }
 }

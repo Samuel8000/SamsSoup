@@ -51,5 +51,10 @@ namespace SamsSoup.Data.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public void UpdateSoupNames(List<Soup> soups)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

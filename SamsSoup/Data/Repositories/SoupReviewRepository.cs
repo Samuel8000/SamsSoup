@@ -23,7 +23,7 @@ namespace SamsSoup.Data.Repositories
 
         public IEnumerable<SoupReview> GetSoupReviewsForPie(int soupId)
         {
-            return _appDbContext.SoupReviews.Where(s => s.SoupId == soupId);
+            return _appDbContext.SoupReviews.Where(s => s.Soup.Id == soupId);
         }
     }
 }

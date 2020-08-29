@@ -9,7 +9,6 @@ namespace SamsSoup.Models
     {
         public int Id { get; set; }
         public string Review { get; set; }
-        public int SoupId { get; set; }
         public Soup Soup { get; set; }
     }
 }

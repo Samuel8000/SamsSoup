@@ -1,8 +1,5 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@using System.Net
+@using System.Threading.Tasks
 @model SoupDetailViewModel
 
 <h2>@Model.Soup.SoupName</h2>
@@ -21,25 +18,25 @@
 
 <h3>Reviews for this soup</h3>
 
-@foreach(var review in Model.Soup.SoupReviews)
+@foreach (var review in @Model.Reviews)
 {
-    @*@Html.Raw(review.Review)*@
-    <div>@System.Net.WebUtility.HtmlDecode(review.Review)</div>
+     <div>@System.Net.WebUtility.HtmlDecode(review.Review)</div>
+ 
 }
 
 <form asp-action="Details" asp-controller="Soup" role="form" method="post">
     <h4>Write a review</h4>
     <hr />
-    <input type="hidden" asp-for="@Model.Soup.Id"/>
+    <input type="hidden" asp-for="@Model.Soup.Id" />
     <div asp-validation-summary="All" class="text-danger"></div>
 
     <div class="form-group">
         <label asp-for="Review"></label>
-        <input asp-for="Review" class="form-control"/>
+        <input asp-for="Review" class="form-control" />
         <span asp-validation-for="Review" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <input type="submit" class="btn btn-success" value="Post Review"/>
+        <input type="submit" class="btn btn-success" value="Post Review" />
     </div>
 </form>
