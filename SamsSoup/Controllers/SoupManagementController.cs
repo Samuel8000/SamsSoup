@@ -107,8 +107,27 @@ namespace SamsSoup.Controllers
                 models[i].SoupName = soups[i];
             }
 
-            _soupRepository.UpdateSoupNames(models);
+            _soupRepository.UpdateSoups(models);
             return View(soups);
+        }
+        public IActionResult BulkEditSoups()
+        {
+            var soups = _soupRepository.AllSoups.ToList();
+            return View(soups);
+        }
+
+        [HttpPost]
+        public IActionResult BulkEditSoups(List<Soup> soups)
+        {
+            var models = _soupRepository.AllSoups.ToList();
+            for(var i = 0; i < models.Count; i++)
+            {
+                models[i].SoupName = soups[i].SoupName;
+                models[i].Price = soups[i].Price;
+                models[i].ShortDescription = soups[i].ShortDescription;
+            }
+            _soupRepository.UpdateSoups(models);
+            return View(models);
         }
 
     }
