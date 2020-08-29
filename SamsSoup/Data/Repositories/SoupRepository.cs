@@ -42,6 +42,13 @@ namespace SamsSoup.Data.Repositories
             _appDbContext.SaveChanges();
         }
 
+        public void DeleteSoup(Soup soup)
+        {
+            _appDbContext.Soups.Remove(soup);
+            _appDbContext.SaveChanges();
+
+        }
+
         public Soup GetSoupById(int soupId)
         {
             return _appDbContext.Soups.FirstOrDefault(s => s.Id == soupId);

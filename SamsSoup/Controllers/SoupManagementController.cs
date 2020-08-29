@@ -39,10 +39,10 @@ namespace SamsSoup.Controllers
             };
             return View(soupEditViewModel);
         }
-
         [HttpPost]
-        public IActionResult AddSoup(SoupEditViewModel soupEditViewModel)
+        public IActionResult AddSoup([Bind("Soup")]SoupEditViewModel soupEditViewModel)
         {
+
             //Basic validation
             if (ModelState.IsValid)
             {
@@ -51,7 +51,6 @@ namespace SamsSoup.Controllers
             }
             return View(soupEditViewModel);
         }
-
         public IActionResult EditSoup(int soupId)
         {
             var categories = _categoryRepository.AllCategories;
@@ -70,7 +69,6 @@ namespace SamsSoup.Controllers
 
             return View(soupEditViewModel);
         }
-
         [HttpPost]
         public IActionResult EditSoup(SoupEditViewModel soupEditViewModel)
         {
@@ -85,11 +83,14 @@ namespace SamsSoup.Controllers
         }
 
         [HttpPost]
-        public IActionResult DeleteSoup(string soupId)
+        public IActionResult DeleteSoup(int soupId)
         {
-            return View();
-        }
+            var categories = _categoryRepository.AllCategories;
 
+            var soup = _soupRepository.AllSoups.FirstOrDefault(s => s.Id == soupId);
+            _soupRepository.DeleteSoup(soup);
+            return RedirectToAction("Index");
+        }
         public IActionResult QuickEdit()
         {
             var soupNames = _soupRepository.AllSoups.Select(s => s.SoupName).ToList();

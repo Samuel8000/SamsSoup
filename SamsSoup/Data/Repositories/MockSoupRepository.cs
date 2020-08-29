@@ -7,54 +7,69 @@ using System.Threading.Tasks;
 
 namespace SamsSoup.Data.Repositories
 {
-    public class MockSoupRepository : ISoupRepository
+    public class MockSoupRepository 
     {
-        private readonly ICategoryRepository _categoryRepository = new MockCategoryRepository();
-        public IEnumerable<Soup> AllSoups =>
-            new List<Soup>
-            {
-                new Soup{Id=1, SoupName= "Vegetable Clear Soup", ShortDescription="Lorem Ipsum",
-                    LongDescription="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.", 
-                    Category = _categoryRepository.AllCategories.ToList()[0], IsSoupOfTheWeek= false},
-                new Soup{Id=2, SoupName= "Mushroom Soup", ShortDescription="Lorem Ipsum",
-                    LongDescription="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.", Category = _categoryRepository.AllCategories.ToList()[1], IsSoupOfTheWeek= false},
-                new Soup{Id=3, SoupName= "Chicken and Chard Pasta Fagioli", ShortDescription="Lorem Ipsum",
-                    LongDescription="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.", Category = _categoryRepository.AllCategories.ToList()[2], IsSoupOfTheWeek= false},
-                new Soup{Id=4, SoupName= "Japanese Soup", ShortDescription="Lorem Ipsum",
-                    LongDescription="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.", Category = _categoryRepository.AllCategories.ToList()[0], IsSoupOfTheWeek= true}
-            };
+        //private readonly ICategoryRepository _categoryRepository = new MockCategoryRepository();
+        //public IEnumerable<Soup> AllSoups =>
+        //    new List<Soup>
+        //    {
+        //        new Soup{Id=1, SoupName= "Vegetable Clear Soup", ShortDescription="Lorem Ipsum",
+        //            LongDescription="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.", 
+        //            Category = _categoryRepository.AllCategories.ToList()[0], IsSoupOfTheWeek= false},
+        //        new Soup{Id=2, SoupName= "Mushroom Soup", ShortDescription="Lorem Ipsum",
+        //            LongDescription="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.", Category = _categoryRepository.AllCategories.ToList()[1], IsSoupOfTheWeek= false},
+        //        new Soup{Id=3, SoupName= "Chicken and Chard Pasta Fagioli", ShortDescription="Lorem Ipsum",
+        //            LongDescription="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.", Category = _categoryRepository.AllCategories.ToList()[2], IsSoupOfTheWeek= false},
+        //        new Soup{Id=4, SoupName= "Japanese Soup", ShortDescription="Lorem Ipsum",
+        //            LongDescription="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.", Category = _categoryRepository.AllCategories.ToList()[0], IsSoupOfTheWeek= true}
+        //    };
 
 
-        public IEnumerable<Soup> SoupsOfTheWeek { get; }
+        //public IEnumerable<Soup> SoupsOfTheWeek { get; }
 
-        public int Commit()
-        {
-            throw new NotImplementedException();
-        }
+        //public int Commit()
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public void CreateSoup(Soup soup)
-        {
-            throw new NotImplementedException();
-        }
+        //public void CreateSoup(Soup soup)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public Soup GetSoupById(int soupId)
-        {
-            return AllSoups.FirstOrDefault(s => s.Id == soupId);
-        }
+        //public Soup DeleteSoup(int soupId)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public void UpdateSoup(Soup soup)
-        {
-            throw new NotImplementedException();
-        }
+        //public void DeleteSoup(Soup soup)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public void UpdateSoupNames(List<string> soups)
-        {
-            throw new NotImplementedException();
-        }
+        //public Soup GetSoupById(int soupId)
+        //{
+        //    return AllSoups.FirstOrDefault(s => s.Id == soupId);
+        //}
 
-        public void UpdateSoupNames(List<Soup> soups)
-        {
-            throw new NotImplementedException();
-        }
+        //public void UpdateSoup(Soup soup)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //public void UpdateSoupNames(List<string> soups)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //public void UpdateSoupNames(List<Soup> soups)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //void ISoupRepository.DeleteSoup(int soupId)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

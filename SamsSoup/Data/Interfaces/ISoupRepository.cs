@@ -12,6 +12,7 @@ namespace SamsSoup.Data.Interfaces
         IEnumerable<Soup> SoupsOfTheWeek { get; }
         Soup GetSoupById(int soupId);
         void UpdateSoup(Soup soup);
+        void DeleteSoup(Soup soup);
         void CreateSoup(Soup soup);
         void UpdateSoupNames(List<Soup> soups);
 

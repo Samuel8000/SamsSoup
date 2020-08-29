@@ -46,10 +46,8 @@ namespace SamsSoup.Controllers
             {
                 Soups = soups,
                 CurrentCategory = currentCategory
-            });
-
+            }); 
         }
-
 
         public IActionResult Details(int id)
         {
