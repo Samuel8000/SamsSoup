@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,8 +8,8 @@ namespace SamsSoup.Models
 {
     public class Soup
     {
-
         public int Id { get; set; }
+        [Remote("CheckIfSoupNameAlreadyExists", "SoupManagement", ErrorMessage = "The soup name is already taken")]
         public string SoupName { get; set; }
         public string ShortDescription { get; set; }
         public string LongDescription { get; set; }

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using SamsSoup.Data.Interfaces;
 using SamsSoup.Models;
 using SamsSoup.ViewModels;
@@ -42,7 +43,12 @@ namespace SamsSoup.Controllers
         [HttpPost]
         public IActionResult AddSoup([Bind("Soup")]SoupEditViewModel soupEditViewModel)
         {
-
+            //Custom Validation
+            if(ModelState.GetValidationState("Soup.Price") == ModelValidationState.Valid
+                && soupEditViewModel.Soup.Price < 0)
+            {
+                ModelState.AddModelError(nameof(soupEditViewModel.Soup.Price), "The price of the soup must be higher than zero");
+            }
             //Basic validation
             if (ModelState.IsValid)
             {
@@ -128,6 +134,13 @@ namespace SamsSoup.Controllers
             }
             _soupRepository.UpdateMultipleSoups(models);
             return View(models);
+        }
+
+        [AcceptVerbs("Get", "Post")]
+        public IActionResult CheckIfSoupNameAlreadyExists([Bind(Prefix = "Soup.SoupName")]string soupName)
+        {
+            var soup = _soupRepository.AllSoups.FirstOrDefault(s => s.SoupName == soupName);
+            return soup == null ? Json(true) : Json("The soup name is already taken");
         }
 
     }
