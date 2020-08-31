@@ -8,10 +8,9 @@
         <div class="form-group">
             <label>Soup name @(i + 1)</label>
             <input asp-for="@Model[i]" name="soups" id="soups" class="form-control"/>
-            @*@Html.TextBoxFor(m => @Model[i], new { @class = "form-control" })*@
         </div>
         }
-        <button type="submit" class="btn btn-primary">Update</button>
+        <samsbutton content="Update" button-style="primary"/>
     </form>
 }
 else

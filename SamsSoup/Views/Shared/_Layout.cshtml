@@ -30,22 +30,17 @@
                     <li class="nav-item">
                         <a class="nav-link" asp-controller="Contact" asp-action="Index">Contact</a>
                     </li>
-                    @if (SignInManager.IsSignedIn(User))
-                    {
-                        <li class="nav-item">
+                    <li Condition="SignInManager.IsSignedIn(User)" class="nav-item">
                             <a class="nav-link " asp-controller="SoupGift" asp-action="Index">Send a Soup</a>
-                        </li>
+                    </li>
 
-                    }
+
                     @await Component.InvokeAsync("ShoppingCartSummary")
 
                     @if (SignInManager.IsSignedIn(User) && User.IsInRole("Administrators"))
                     {
                         @await Component.InvokeAsync("AdminMenu")
-
-
                     }
-
 
                     <li class="dropdown nav-item">
                         <a class="nav-link" asp-controller="SoupManagement"

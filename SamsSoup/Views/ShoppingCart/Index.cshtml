@@ -1,5 +1,5 @@
 ﻿@model ShoppingCartViewModel
-
+<div class="min-vh-100">
     <h2>Your shopping cart</h2>
     <h4>the soups in your cart</h4>
 
@@ -13,7 +13,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach(var line in Model.ShoppingCart.ShoppingCartItems)
+            @foreach (var line in Model.ShoppingCart.ShoppingCartItems)
             {
                 <tr>
                     <td class="text-center">@line.Amount</td>
@@ -34,6 +34,14 @@
             </tr>
         </tfoot>
     </table>
-    <div>
+
+    <div progress-value="33">
+
+    </div>
+    <div class="mt-3">
         <a class="btn btn-primary" asp-controller="Order" asp-action="CheckOut">Check Out Now!</a>
     </div>
+
+
+
+</div>
